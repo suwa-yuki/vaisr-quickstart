@@ -153,10 +153,6 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
      --member "serviceAccount:retail-api-client-sa@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
      --role "roles/retail.editor"
-
-gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
-     --member "serviceAccount:retail-api-client-sa@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
-     --role "roles/retail.editor"
 ```
 
 次のコマンドで、サービスアカウントのアクセストークンを取得し、そのアクセストークンを使ってインポート API を呼び出します。
