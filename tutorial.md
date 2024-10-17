@@ -155,6 +155,20 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
      --role "roles/retail.editor"
 ```
 
+ログインしているアカウントからサービスアカウントのアクセストークンを取得するため、自分自身に `roles/iam.serviceAccountTokenCreator` のロールを付与します。
+
+```bash
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+     --member "user:<自分のメールアドレス>" \
+     --role "roles/iam.serviceAccountTokenCreator"
+```
+
+`gcloud auth login` コマンドでログインし直します。
+
+```bash
+gcloud auth login
+```
+
 次のコマンドで、サービスアカウントのアクセストークンを取得し、そのアクセストークンを使ってインポート API を呼び出します。
 
 ```bash
