@@ -131,7 +131,13 @@ Vertex AI Search for Retail では、インポートすることができる商�
 ```bash
 bq mk \
   --use_legacy_sql=false \
-  --view "SELECT id, name AS title, description, [STRUCT(image AS uri)] AS images, [category] AS categories, STRUCT(price AS originalPrice, \"JPY\" as currencyCode) AS priceInfo, SPLIT(size, \",\") AS sizes FROM \`${GOOGLE_CLOUD_PROJECT}.catalog.products_raw\`" \
+  --view "\
+SELECT id, name AS title, description, \
+[STRUCT(image AS uri)] AS images, \
+[category] AS categories, \
+STRUCT(price AS originalPrice, \"JPY\" as currencyCode) AS priceInfo, \
+SPLIT(size, \",\") AS sizes \
+FROM \`${GOOGLE_CLOUD_PROJECT}.catalog.products_raw\`" \
   "${GOOGLE_CLOUD_PROJECT}:catalog.products_view"
 ```
 
@@ -155,7 +161,7 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
      --role "roles/retail.editor"
 ```
 
-ログインしているアカウントからサービスアカウントのアクセストークンを取得するため、自分自身に `roles/iam.serviceAccountTokenCreator` のロールを付与します。
+ログインしているアカウントからサービスアカウントのアクセストークンを取得するため、自分自身に `roles/iam.serviceAccountTokenCreator` のロールを付与します。`<自分のメールアドレス>` には、現在使用しているアカウントのメールアドレスに変更してください。
 
 ```bash
 gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
@@ -163,7 +169,7 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
      --role "roles/iam.serviceAccountTokenCreator"
 ```
 
-`gcloud auth login` コマンドでログインし直します。
+`gcloud auth login` コマンドでログインし直します。OAuth 認証用の URL が出力されるので、URL にアクセスし、表示される手順に従って OAuth 認証を完了します。
 
 ```bash
 gcloud auth login
