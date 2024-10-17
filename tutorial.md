@@ -131,7 +131,7 @@ Vertex AI Search for Retail では、インポートすることができる商�
 ```bash
 bq mk \
   --use_legacy_sql=false \
-  --view "SELECT id, name AS title, description, [STRUCT(image AS uri)] AS images, [category] AS categories, STRUCT(price AS originalPrice, JPY" as currencyCode) AS priceInfo, SPLIT(size, \",\") AS sizes FROM \`${GOOGLE_CLOUD_PROJECT}.catalog.products_raw\`" \
+  --view "SELECT id, name AS title, description, [STRUCT(image AS uri)] AS images, [category] AS categories, STRUCT(price AS originalPrice, "JPY" as currencyCode) AS priceInfo, SPLIT(size, \",\") AS sizes FROM \`${GOOGLE_CLOUD_PROJECT}.catalog.products_raw\`" \
   "${GOOGLE_CLOUD_PROJECT}:catalog.products_view"
 ```
 
